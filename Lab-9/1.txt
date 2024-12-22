@@ -1,0 +1,12 @@
+
+% Define system matrices A and B
+A = [0 0 1 0; 0 0 0 1; 0 80.3 -45.8 -0.930; 0 122 -44.1 -1.40]; B = [0; 0; 83.4; 80.3];
+% Calculate dimensions of matrices A and B
+dim_A = size(A, 1);
+dim_B = size(B, 1);
+% Compute the eigenvalues of matrix A A_eig=eig(A);
+% Calculate controllability matrix Qc Qc = ctrb (A, B);
+% Determine the rank of the controllability matrix Qc k = rank (Qc);
+% Define desired poles for the system
+poles_Desired = [ -2.8+2.86j -2.8-2.86j -30 -40];
+% Compute the characteristic polynomial of desired poles char_poly_desired = poly(poles_Desired); char_poly_desired_flp = fliplr (char_poly_desired);

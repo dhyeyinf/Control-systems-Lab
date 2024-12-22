@@ -1,0 +1,18 @@
+
+% Compute the characteristic polynomial of system eigenvalues char_poly_Sys = poly(A_eig);
+char_poly_Sys2 = char_poly_Sys(:,2:5);
+% Construct the modified system matrix A_bar
+A_bar = [0 1 0 0; 0 0 1 0; 0 0 0 1; -1 * flip(char_poly_Sys2)];
+% Define the modified input matrix B_bar
+B_bar = [0; 0; 0; 1];
+% Calculate the difference matrix between A_bar and B_bar Diff_matrix = A_bar - B_bar; updated_char_poly = -1 * Diff_matrix(dim_A, :); updated_char_poly(1) = 0;
+% Initialize the K_bar matrix
+K_bar = zeros(size (char_poly_desired));
+% Calculate the feedback gain K_bar
+for i = 1:length(char_poly_desired) - 1       K_bar(i) = char_poly_desired_flp(i) + updated_char_poly(i);
+end
+% Remove the last element from K_bar
+K_bar = K_bar(1:end-1);
+% Construct the augmented controllability matrix Qc_bar Qc_bar = [B_bar A_bar*B_bar A_bar*A_bar*B_bar A_bar*A_bar*A_bar*B_bar];
+% Compute the inverse of Qc_bar
+Qc_bar_Inverse = inv(Qc_bar);

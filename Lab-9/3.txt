@@ -1,0 +1,19 @@
+
+% Compute the transformation matrix W W = Qc* Qc_bar_Inverse;
+% Define a specific value for K_bar K_bar = [19200 9843 1707 28.4];
+% Compute the inverse of W
+W_inverse = inv(W);
+% Calculate the final control gain matrix K
+K = K_bar* W_inverse;
+% Display the values of Qc, poles_Desired, Qc_bar, W, K_bar, and K disp('Controllability Matrix Qc:');
+disp(Qc);
+disp('Desired Poles:');
+disp(poles_Desired);
+disp('Controllability Matrix (for companion matrices A_bar & B_bar) Qc_bar:');
+disp(Qc_bar);
+disp('Transformation Matrix W:');
+disp(W);
+disp('K_bar:');
+disp(K_bar);
+disp('K:');
+disp(K);
